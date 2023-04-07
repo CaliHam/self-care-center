@@ -8,8 +8,8 @@ var viewAllBtn = document.querySelector('#viewall')
 var viewFaveBtn = document.querySelector('#faves')
 var homeView = document.querySelector('.home-view')
 var allMessagesView = document.querySelector('.all-messages')
-
-
+var affirmMsgs = document.querySelector('#affirmations')
+var mantraMsgs = document.querySelector('#mantras')
 
 // EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
@@ -69,4 +69,12 @@ function showAllMessages() {
     viewAllBtn.classList.add('hidden')
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
+    showLists()
+}
+
+function showLists(msgArray) {
+    //list all messages in the array
+    for (var i = 0; i < msgArray.length; i++) {
+        
+    }
 }

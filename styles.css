@@ -56,6 +56,10 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    font-size: 1.8rem;
+}
+
 h2 {
     margin-top: 6%;
     font-size: 1.2rem;
@@ -75,7 +79,7 @@ section {
     margin: 0% 5%;
 }
 
-form {
+.home-form {
     display: flex;
     justify-content: space-evenly;
 }
@@ -128,6 +132,22 @@ label {
 img {
     width: 75px;
     height: 75px;
+}
+
+.all-messages > article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    background: white;
+    color:#134d71;
+    padding: 10px;
+    margin: 30px;
+}
+
+.list-forms {
+    display: flex;
+    flex-direction: column;
 }
 
 .hidden {
