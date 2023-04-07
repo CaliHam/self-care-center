@@ -1,12 +1,21 @@
 // DECLARE VARIABLES //
-var btn = document.querySelector('button')
+var msgBtn = document.querySelector('#msgbtn')
 var msgBox = document.querySelector('.message-box')
 var messages = document.querySelectorAll('input[name="message"]')
 var clearBtn = document.querySelector('#clearbtn')
+var homeBtn = document.querySelector('#homebtn')
+var viewAllBtn = document.querySelector('#viewall')
+var viewFaveBtn = document.querySelector('#faves')
+var homeView = document.querySelector('.home-view')
+var allMessagesView = document.querySelector('.all-messages')
+
+
 
 // EVENT LISTENERS //
-btn.addEventListener('click', showMessage)
+msgBtn.addEventListener('click', showMessage)
 clearBtn.addEventListener('click', clearMsg)
+viewAllBtn.addEventListener('click', showAllMessages)
+homeBtn.addEventListener('click', goHome)
 
 
 
@@ -46,4 +55,18 @@ function showMessage() {
     } else {
         msgBox.innerHTML = `<p> ✨Please select a message type✨ </p>` 
     }
+}
+
+function goHome() {
+    homeView.classList.remove('hidden')
+    viewAllBtn.classList.remove('hidden')
+    homeBtn.classList.add('hidden')
+    allMessagesView.classList.add('hidden')
+}
+
+function showAllMessages() {
+    homeView.classList.add('hidden')
+    viewAllBtn.classList.add('hidden')
+    homeBtn.classList.remove('hidden')
+    allMessagesView.classList.remove('hidden')
 }

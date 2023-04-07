@@ -6,7 +6,40 @@ html, body {
     height: 100%;
 }
 
-h1 {
+header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+}
+
+#viewall, #faves, #homebtn {
+    font-size: 15px;
+    border: 0px;
+    padding: 7px 4px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 30px;
+    width: 30%;
+    color: #134d71;
+    transition: .2s ease all;
+}
+
+#viewall:hover, #faves:hover, #homebtn:hover {
+    background-color: #faf5eb;
+    color:#468dba;
+    cursor: pointer;
+    width: 33%;
+}
+
+#heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
     color: white;
     padding-top: 5%;
@@ -18,15 +51,17 @@ body {
     margin: 0;
 }
 
-h2 {
+.home-view {
     display: flex;
-    color: white;
-    margin-top: 100px;
-    justify-content: center;
+    flex-direction: column;
+}
+
+h2 {
+    margin-top: 6%;
     font-size: 1.2rem;
 }
 
-.box {
+.receive-msg-box {
     border-radius: 10px;
     background: white;
     padding: 20px;
@@ -58,13 +93,10 @@ label {
     color:white;
 }
 
-.hidden {
-    display: none;
-}
-
 #msgbtn, #clearbtn {
     font-size: 15px;
     padding: 5px;
+    border: 0px;
     background-color: #134d71;
     border-radius: 5px;
     margin-top: 30px;
@@ -97,3 +129,8 @@ img {
     width: 75px;
     height: 75px;
 }
+
+.hidden {
+    display: none !important;
+}
+
