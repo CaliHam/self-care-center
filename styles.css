@@ -97,23 +97,23 @@ label {
     color:white;
 }
 
-#msgbtn, #clearbtn {
+#msgbtn, #clearbtn, #addmsgbtn {
     font-size: 15px;
-    padding: 5px;
+    padding: 5px 10px;
     border: 0px;
     background-color: #134d71;
     border-radius: 5px;
     margin-top: 30px;
-    width: 35%;
+    width: auto;
     color: white;
     transition: .2s ease all;
 }
 
 
-#clearbtn:hover, #msgbtn:hover {
+#clearbtn:hover, #msgbtn:hover, #addmsgbtn:hover {
     background-color: #2f75a1;
     cursor: pointer;
-    width: 40%;
+    transform: scale(1.1);
 }
 
 .message-box {
@@ -151,6 +151,17 @@ img {
 
 .list-forms > h1 {
     text-align: center;
+}
+
+.add-btns {
+    display: flex;
+    justify-content: flex-end;
+    color:white;
+}
+
+#addmsgbtn {
+    margin: 0;
+    width: auto;
 }
 
 .hidden {
