@@ -137,17 +137,20 @@ img {
 .all-messages > article {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     border-radius: 10px;
     background: white;
     color:#134d71;
-    padding: 10px;
+    padding: 30px;
     margin: 30px;
 }
 
 .list-forms {
     display: flex;
     flex-direction: column;
+}
+
+.list-forms > h1 {
+    text-align: center;
 }
 
 .hidden {

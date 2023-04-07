@@ -69,12 +69,19 @@ function showAllMessages() {
     viewAllBtn.classList.add('hidden')
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
-    showLists()
+    affirmMsgs.innerHTML = `<h1><u>Affirmations</u> 🌸</h1>`;
+    mantraMsgs.innerHTML = `<h1><u>Mantras</u> 👑</h1>`;
+    showLists(affirmations)
+    showLists(mantras)
 }
 
 function showLists(msgArray) {
-    //list all messages in the array
     for (var i = 0; i < msgArray.length; i++) {
-        
+        if (msgArray === affirmations) {
+            affirmMsgs.innerHTML += `<li>${affirmations[i]}</li>`;
+        }
+        else if (msgArray === mantras) {
+            mantraMsgs.innerHTML += `<li>${mantras[i]}</li>`
+        }
     }
 }
