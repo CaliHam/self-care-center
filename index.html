@@ -30,7 +30,6 @@
             </form>
             <div class="buttons">
               <button type="button" id="msgbtn" name="receive-message">Receive Message</button>
-              <p>_</p>
               <button type="button" class="hidden" id="clearbtn" name="clear">Clear All</button>
             </div>
           </article>
@@ -44,15 +43,29 @@
       <section class="all-messages hidden">
         <article>
           <div class="add-btns">
-            <button type="button" id="addmsgbtn">Add Message</button>
+            <button type="button" id="addafirmbtn">Add Message</button>
           </div>
+          <section id="modal-1" class="modal hidden">
+            <div class="modal-body">
+              <input placeholder="Your thoughts here" class="user-message"/>
+              <button class="submit1">Submit</button>
+              <p id="error1" class="hidden">Please write your message.</p>
+            </div>
+          </section>
           <form class="list-forms" id="affirmations">
           </form>
         </article>
         <article>
           <div class="add-btns">
-            <button type="button" id="addmsgbtn">Add Message</button>
+            <button type="button" id="addmtrabtn">Add Message</button>
           </div>
+          <section id="modal-2" class="modal hidden">
+            <div class="modal-body">
+              <input placeholder="Your thoughts here" class="user-message2"/>
+              <button class="submit2">Submit</button>
+              <p id="error2" class="hidden">Please write your message.</p>
+            </div>
+          </section>
           <form class="list-forms" id="mantras">
           </form>
         </article>
