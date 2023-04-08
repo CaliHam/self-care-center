@@ -21,6 +21,8 @@ var userMMessage = document.querySelector(".user-message2")
 var modalBody = document.querySelector(".modal-body")
 var error1 = document.querySelector('#error1')
 var error2 = document.querySelector('#error2')
+var close1Btn = document.querySelector('.close1')
+var close2Btn = document.querySelector('.close2')
 
 // EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
@@ -35,6 +37,8 @@ submitABtn.addEventListener('click', function() {
 submitMBtn.addEventListener('click', function() {
     submitMantraMsg()
 })
+close1Btn.addEventListener('click', closeModalA)
+close2Btn.addEventListener('click', closeModalM)
 
 // EVENT HANDLERS AND FUNCTIONS //
 function getRandomIndex(array) {
@@ -114,8 +118,11 @@ function addMantraMsg() {
     mantraModal.classList.remove('hidden')
 }
 
-function closeModal() {
-
+function closeModalA() {
+    affirmModal.classList.add('hidden')
+}
+function closeModalM() {
+    mantraModal.classList.add('hidden')
 }
 
 function submitAffirmMsg() {

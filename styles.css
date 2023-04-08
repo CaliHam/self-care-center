@@ -177,7 +177,7 @@ img {
     border-radius: 5px;
     z-index: 10000;
     background-color: white;
-    padding: 40px;
+    padding: 0px 25px 25px 25px;
     overflow: auto;
     width: auto;
     height: auto;
@@ -187,7 +187,19 @@ img {
     padding: 20px;
     background-color: white;
 }
-
+#close-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.close1, .close2 {
+    background: none;
+    border: 0px;
+}
+.close1:hover, .close2:hover, .submit1:hover, .submit2:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
 .hidden {
     display: none !important;
 }
