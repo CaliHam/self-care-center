@@ -21,6 +21,8 @@ var userMMessage = document.querySelector(".user-message2")
 var modalBody = document.querySelector(".modal-body")
 var error1 = document.querySelector('#error1')
 var error2 = document.querySelector('#error2')
+var error11 = document.querySelector('#error11')
+var error22 = document.querySelector('#error22')
 var close1Btn = document.querySelector('.close1')
 var close2Btn = document.querySelector('.close2')
 
@@ -128,6 +130,8 @@ function closeModalM() {
 function submitAffirmMsg() {
     if(!userAMessage.value){
         error1.classList.remove('hidden')
+    } else if (affirmations.includes(userAMessage.value)) {
+        error11.classList.remove('hidden')
     } else {
         error1.classList.add('hidden')
         affirmModal.classList.add('hidden')
@@ -140,6 +144,8 @@ function submitAffirmMsg() {
 function submitMantraMsg() {
     if(!userMMessage.value){
         error2.classList.remove('hidden')
+    } else if (mantras.includes(userMMessage.value)) {
+        error22.classList.remove('hidden')
     } else {
         error2.classList.add('hidden')
         mantraModal.classList.add('hidden')
