@@ -8,16 +8,37 @@ var viewAllBtn = document.querySelector('#viewall')
 var viewFaveBtn = document.querySelector('#faves')
 var homeView = document.querySelector('.home-view')
 var allMessagesView = document.querySelector('.all-messages')
-
-
+var affirmMsgs = document.querySelector('#affirmations')
+var mantraMsgs = document.querySelector('#mantras')
+var addAffirmMsgBtn = document.querySelector('#addafirmbtn')
+var addMtraMsgBtn = document.querySelector('#addmtrabtn')
+var affirmModal = document.querySelector('#modal-1')
+var mantraModal = document.querySelector('#modal-2')
+var submitABtn = document.querySelector('.submit1')
+var submitMBtn = document.querySelector('.submit2')
+var userAMessage = document.querySelector(".user-message")
+var userMMessage = document.querySelector(".user-message2")
+var modalBody = document.querySelector(".modal-body")
+var error1 = document.querySelector('#error1')
+var error2 = document.querySelector('#error2')
+var close1Btn = document.querySelector('.close1')
+var close2Btn = document.querySelector('.close2')
 
 // EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
 clearBtn.addEventListener('click', clearMsg)
 viewAllBtn.addEventListener('click', showAllMessages)
 homeBtn.addEventListener('click', goHome)
-
-
+addAffirmMsgBtn.addEventListener('click', addAffirmMsg)
+addMtraMsgBtn.addEventListener('click', addMantraMsg)
+submitABtn.addEventListener('click', function() {
+    submitAffirmMsg() 
+})
+submitMBtn.addEventListener('click', function() {
+    submitMantraMsg()
+})
+close1Btn.addEventListener('click', closeModalA)
+close2Btn.addEventListener('click', closeModalM)
 
 // EVENT HANDLERS AND FUNCTIONS //
 function getRandomIndex(array) {
@@ -69,4 +90,61 @@ function showAllMessages() {
     viewAllBtn.classList.add('hidden')
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
+    resetMessages()
+}
+
+function resetMessages() {
+    affirmMsgs.innerHTML = `<h1><u>Affirmations</u> 🌸</h1>`;
+    mantraMsgs.innerHTML = `<h1><u>Mantras</u> 👑</h1>`;
+    showLists(affirmations)
+    showLists(mantras)
+}
+
+function showLists(msgArray) {
+    for (var i = 0; i < msgArray.length; i++) {
+        if (msgArray === affirmations) {
+            affirmMsgs.innerHTML += `<li>${affirmations[i]}</li>`;
+        }
+        else if (msgArray === mantras) {
+            mantraMsgs.innerHTML += `<li>${mantras[i]}</li>`
+        }
+    }
+}
+
+function addAffirmMsg() {
+    affirmModal.classList.remove('hidden')
+}
+function addMantraMsg() {
+    mantraModal.classList.remove('hidden')
+}
+
+function closeModalA() {
+    affirmModal.classList.add('hidden')
+}
+function closeModalM() {
+    mantraModal.classList.add('hidden')
+}
+
+function submitAffirmMsg() {
+    if(!userAMessage.value){
+        error1.classList.remove('hidden')
+    } else {
+        error1.classList.add('hidden')
+        affirmModal.classList.add('hidden')
+        affirmations.push(userAMessage.value)
+        userAMessage.value = '';
+        resetMessages()
+    }
+}
+
+function submitMantraMsg() {
+    if(!userMMessage.value){
+        error2.classList.remove('hidden')
+    } else {
+        error2.classList.add('hidden')
+        mantraModal.classList.add('hidden')
+        mantras.push(userMMessage.value)
+        userMMessage.value = '';
+        resetMessages()
+    }
 }

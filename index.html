@@ -20,7 +20,7 @@
       </section>
       <section>
           <article class="receive-msg-box">
-            <form>
+            <form class="home-form">
               <label for="affirmation"><em>affirmation</em>
                 <input type="radio" id="affirmation" name="message" value="affirmation"> 
               </label>
@@ -30,7 +30,6 @@
             </form>
             <div class="buttons">
               <button type="button" id="msgbtn" name="receive-message">Receive Message</button>
-              <p>_</p>
               <button type="button" class="hidden" id="clearbtn" name="clear">Clear All</button>
             </div>
           </article>
@@ -41,9 +40,40 @@
           </article>
         </section>
     </section>
-      <section class="all-messages">
+      <section class="all-messages hidden">
         <article>
-
+          <div class="add-btns">
+            <button type="button" id="addafirmbtn">Add Message</button>
+          </div>
+          <section id="modal-1" class="modal hidden">
+            <div class="modal-body">
+              <nav id="close-btn">
+                <button class="close1">✖️</button>
+              </nav>
+              <input placeholder="Your thoughts here" class="user-message"/>
+              <button class="submit1">Submit</button>
+              <p id="error1" class="hidden">Please write your message.</p>
+            </div>
+          </section>
+          <form class="list-forms" id="affirmations">
+          </form>
+        </article>
+        <article>
+          <div class="add-btns">
+            <button type="button" id="addmtrabtn">Add Message</button>
+          </div>
+          <section id="modal-2" class="modal hidden">
+            <div class="modal-body">
+              <nav id="close-btn">
+                <button class="close2">✖️</button>
+              </nav>
+              <input placeholder="Your thoughts here" class="user-message2"/>
+              <button class="submit2">Submit</button>
+              <p id="error2" class="hidden">Please write your message.</p>
+            </div>
+          </section>
+          <form class="list-forms" id="mantras">
+          </form>
         </article>
       </section>
     <script type="text/javascript" src="main.js"></script>

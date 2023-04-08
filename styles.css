@@ -13,8 +13,14 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     color: white;
+    padding: 10px;
+}
+
+p {
+    display: block;
+    margin: 20px;
 }
 
 #viewall, #faves, #homebtn {
@@ -23,8 +29,8 @@ nav {
     padding: 7px 4px;
     background-color: #ffffff;
     border-radius: 5px;
-    margin-top: 30px;
-    width: 30%;
+    margin: 10px;
+    width: auto;
     color: #134d71;
     transition: .2s ease all;
 }
@@ -33,7 +39,7 @@ nav {
     background-color: #faf5eb;
     color:#468dba;
     cursor: pointer;
-    width: 33%;
+    transform: scale(1.1);
 }
 
 #heading {
@@ -56,6 +62,10 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    font-size: 1.8rem;
+}
+
 h2 {
     margin-top: 6%;
     font-size: 1.2rem;
@@ -64,7 +74,7 @@ h2 {
 .receive-msg-box {
     border-radius: 10px;
     background: white;
-    padding: 20px;
+    padding: 10px;
     width: 550px;
     height: 80px;
 }
@@ -75,7 +85,7 @@ section {
     margin: 0% 5%;
 }
 
-form {
+.home-form {
     display: flex;
     justify-content: space-evenly;
 }
@@ -93,23 +103,23 @@ label {
     color:white;
 }
 
-#msgbtn, #clearbtn {
+#msgbtn, #clearbtn, #addafirmbtn, #addmtrabtn {
     font-size: 15px;
-    padding: 5px;
+    padding: 5px 10px;
     border: 0px;
     background-color: #134d71;
     border-radius: 5px;
-    margin-top: 30px;
-    width: 35%;
+    margin: 30px 10px 0px 10px;
+    width: auto;
     color: white;
     transition: .2s ease all;
 }
 
 
-#clearbtn:hover, #msgbtn:hover {
+#clearbtn:hover, #msgbtn:hover, #addafirmbtn:hover, #addmtrabtn:hover {
     background-color: #2f75a1;
     cursor: pointer;
-    width: 40%;
+    transform: scale(1.1);
 }
 
 .message-box {
@@ -130,6 +140,66 @@ img {
     height: 75px;
 }
 
+.all-messages > article {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background: white;
+    color:#134d71;
+    padding: 10px 30px;
+    margin: 30px;
+}
+
+.list-forms {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-forms > h1 {
+    text-align: center;
+}
+
+.add-btns {
+    display: flex;
+    justify-content: flex-end;
+    color:white;
+}
+
+#addmsgbtn {
+    margin: 0;
+    width: auto;
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    box-shadow: 10px 10px 30px 10px rgba(19,77,113,0.56);
+    border-radius: 5px;
+    z-index: 10000;
+    background-color: white;
+    padding: 0px 25px 25px 25px;
+    overflow: auto;
+    width: auto;
+    height: auto;
+}
+
+.model-body {
+    padding: 20px;
+    background-color: white;
+}
+#close-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.close1, .close2 {
+    background: none;
+    border: 0px;
+}
+.close1:hover, .close2:hover, .submit1:hover, .submit2:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
 .hidden {
     display: none !important;
 }
