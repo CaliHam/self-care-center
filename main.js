@@ -129,6 +129,7 @@ function editMessage(event) {
     editForm.innerHTML += `
     <form>
         <input placeholder="${currentMessage.innerText}" class="edit-message"/>
+        <p id="hiddenError" class="hidden">Please fill out the field</p>
         <button class="enterMsg">✔️</button>
         <button class="deleteMsg">Delete❌</button>
         <button class="cancel">Cancel ✖️</button>
@@ -154,16 +155,31 @@ function editMessage(event) {
 function saveNewMsg(currentMessage) {
     var newMsg = document.querySelector('.edit-message')
     var text = currentMessage.innerText;
-    var index = affirmations.indexOf(text)
-    affirmations.splice(index, 1, newMsg.value)
+    if (newMsg.value === '') {
+        var fillOutField = document.querySelector('#hiddenError')
+        fillOutField.classList.remove('hidden')
+        return;
+    }
+    else if (currentMessage.id.startsWith('a')){
+        var index = affirmations.indexOf(text)
+        affirmations.splice(index, 1, newMsg.value)
+    } else if (currentMessage.id.startsWith('m')){
+        var index = mantras.indexOf(text)
+        mantras.splice(index, 1, newMsg.value)
+    }
     resetMessages()
     makeMsgEditable()
 }
 
 function deleteMsg(currentMessage) {
     var text = currentMessage.innerText;
-    var index = affirmations.indexOf(text)
-    affirmations.splice(index, 1)
+    if (currentMessage.id.startsWith('a')) {
+        var index = affirmations.indexOf(text)
+        affirmations.splice(index, 1)
+    } else if (currentMessage.id.startsWith('m')) {
+        var index = mantras.indexOf(text)
+        mantras.splice(index, 1)
+    }
     resetMessages()
     makeMsgEditable()
 }
