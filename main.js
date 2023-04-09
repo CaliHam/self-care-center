@@ -214,6 +214,7 @@ function submitAffirmMsg() {
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
         resetMessages()
+        makeMsgEditable()
     }
 }
 
@@ -228,5 +229,6 @@ function submitMantraMsg() {
         mantras.push(userMMessage.value)
         userMMessage.value = '';
         resetMessages()
+        makeMsgEditable()
     }
 }
