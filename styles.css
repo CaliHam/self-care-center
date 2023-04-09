@@ -200,6 +200,9 @@ img {
     cursor: pointer;
     transform: scale(1.1);
 }
+.edit-message {
+    width: 60%;
+}
 .hidden {
     display: none !important;
 }

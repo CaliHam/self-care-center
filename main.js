@@ -26,6 +26,7 @@ var error22 = document.querySelector('#error22')
 var close1Btn = document.querySelector('.close1')
 var close2Btn = document.querySelector('.close2')
 
+
 // EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
 clearBtn.addEventListener('click', clearMsg)
@@ -93,6 +94,7 @@ function showAllMessages() {
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
     resetMessages()
+    makeMsgEditable()
 }
 
 function resetMessages() {
@@ -105,12 +107,70 @@ function resetMessages() {
 function showLists(msgArray) {
     for (var i = 0; i < msgArray.length; i++) {
         if (msgArray === affirmations) {
-            affirmMsgs.innerHTML += `<li>${affirmations[i]}</li>`;
+            affirmMsgs.innerHTML += `<li id="a-${i}" class="editable">${affirmations[i]}</li>`;
         }
         else if (msgArray === mantras) {
-            mantraMsgs.innerHTML += `<li>${mantras[i]}</li>`
+            mantraMsgs.innerHTML += `<li id="m-${i}" class="editable">${mantras[i]}</li>`
         }
     }
+}
+
+function makeMsgEditable() {
+    var allMessages = document.querySelectorAll('.editable');
+    allMessages.forEach((element) => 
+        element.addEventListener('dblclick', function (event) {
+            editMessage(event)
+    })
+)}
+
+function editMessage(event) {
+    var currentMessage = event.target;
+    var editForm = document.createElement('form')
+    editForm.innerHTML += `
+    <form>
+        <input placeholder="${currentMessage.innerText}" class="edit-message"/>
+        <button class="enterMsg">✔️</button>
+        <button class="deleteMsg">Delete❌</button>
+        <button class="cancel">Cancel ✖️</button>
+    </form>`
+    currentMessage.parentNode.replaceChild(editForm, currentMessage)
+    var submitMsgBtn = document.querySelector('.enterMsg')
+    submitMsgBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        saveNewMsg(currentMessage)
+    })
+    var deleteMsgBtn = document.querySelector('.deleteMsg')
+    deleteMsgBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        deleteMsg(currentMessage)
+    })
+    var cancelBtn = document.querySelector('.cancel')
+    cancelBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        cancelChange(currentMessage)
+    })
+}
+
+function saveNewMsg(currentMessage) {
+    var newMsg = document.querySelector('.edit-message')
+    var text = currentMessage.innerText;
+    var index = affirmations.indexOf(text)
+    affirmations.splice(index, 1, newMsg.value)
+    resetMessages()
+    makeMsgEditable()
+}
+
+function deleteMsg(currentMessage) {
+    var text = currentMessage.innerText;
+    var index = affirmations.indexOf(text)
+    affirmations.splice(index, 1)
+    resetMessages()
+    makeMsgEditable()
+}
+
+function cancelChange() {
+    resetMessages()
+    makeMsgEditable()
 }
 
 function addAffirmMsg() {
