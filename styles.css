@@ -3,7 +3,7 @@
 }
 
 html, body {
-    height: 100%;
+    min-height: 100vh;
 }
 
 header {
@@ -54,6 +54,7 @@ p {
 
 body {
     background: linear-gradient(to bottom, #134d71, #78a7c6, #f7e4bf) no-repeat;
+    background-position: fill;
     margin: 0;
 }
 
@@ -148,6 +149,8 @@ img {
     color:#134d71;
     padding: 10px 30px;
     margin: 30px;
+    min-width: 30%;
+    max-width: 33%;
 }
 
 .list-forms {
@@ -200,7 +203,19 @@ img {
     cursor: pointer;
     transform: scale(1.1);
 }
+.edit-message {
+    width: 60%;
+}
 .hidden {
     display: none !important;
 }
 
+@media only screen and (max-width: 60rem) {
+    .all-messages {
+        display: flex;
+        flex-direction: column;
+    }
+    .all-messages > article {
+        width: auto;
+    }
+}

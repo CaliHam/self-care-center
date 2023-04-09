@@ -21,8 +21,11 @@ var userMMessage = document.querySelector(".user-message2")
 var modalBody = document.querySelector(".modal-body")
 var error1 = document.querySelector('#error1')
 var error2 = document.querySelector('#error2')
+var error11 = document.querySelector('#error11')
+var error22 = document.querySelector('#error22')
 var close1Btn = document.querySelector('.close1')
 var close2Btn = document.querySelector('.close2')
+
 
 // EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
@@ -91,6 +94,7 @@ function showAllMessages() {
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
     resetMessages()
+    makeMsgEditable()
 }
 
 function resetMessages() {
@@ -103,12 +107,96 @@ function resetMessages() {
 function showLists(msgArray) {
     for (var i = 0; i < msgArray.length; i++) {
         if (msgArray === affirmations) {
-            affirmMsgs.innerHTML += `<li>${affirmations[i]}</li>`;
+            affirmMsgs.innerHTML += `<li id="a-${i}" class="editable">${affirmations[i]}</li>`;
         }
         else if (msgArray === mantras) {
-            mantraMsgs.innerHTML += `<li>${mantras[i]}</li>`
+            mantraMsgs.innerHTML += `<li id="m-${i}" class="editable">${mantras[i]}</li>`
         }
     }
+}
+var enabled = false;
+
+function makeMsgEditable() {
+    var allMessages = document.querySelectorAll('.editable');
+    allMessages.forEach((element) => 
+        element.addEventListener('dblclick', function (event) {
+            editMessage(event)
+    })
+ )}
+
+
+function editMessage(event) {
+    if (!enabled) {
+        enabled = true;
+    } else {
+        return;
+    }
+    var currentMessage = event.target;
+    var editForm = document.createElement('form')
+    editForm.innerHTML += `
+    <form>
+        <input placeholder="${currentMessage.innerText}" class="edit-message"/>
+        <p id="hiddenError" class="hidden">Please fill out the field</p>
+        <button class="enterMsg">✔️</button>
+        <button class="deleteMsg">Delete❌</button>
+        <button class="cancel">Cancel ✖️</button>
+    </form>`
+    currentMessage.parentNode.replaceChild(editForm, currentMessage)
+    var submitMsgBtn = document.querySelector('.enterMsg')
+    submitMsgBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        saveNewMsg(currentMessage)
+    })
+    var deleteMsgBtn = document.querySelector('.deleteMsg')
+    deleteMsgBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        deleteMsg(currentMessage)
+    })
+    var cancelBtn = document.querySelector('.cancel')
+    cancelBtn.addEventListener('click', function (event) {
+        event.preventDefault()
+        cancelChange(currentMessage)
+    })
+}
+
+function saveNewMsg(currentMessage) {
+    var newMsg = document.querySelector('.edit-message')
+    var text = currentMessage.innerText;
+    if (newMsg.value === '') {
+        var fillOutField = document.querySelector('#hiddenError')
+        fillOutField.classList.remove('hidden')
+        return;
+    }
+    else if (currentMessage.id.startsWith('a')){
+        var index = affirmations.indexOf(text)
+        affirmations.splice(index, 1, newMsg.value)
+    } else if (currentMessage.id.startsWith('m')){
+        var index = mantras.indexOf(text)
+        mantras.splice(index, 1, newMsg.value)
+    }
+    enabled = false;
+    resetMessages()
+    makeMsgEditable()
+}
+
+function deleteMsg(currentMessage) {
+    var text = currentMessage.innerText;
+    if (currentMessage.id.startsWith('a')) {
+        var index = affirmations.indexOf(text)
+        affirmations.splice(index, 1)
+    } else if (currentMessage.id.startsWith('m')) {
+        var index = mantras.indexOf(text)
+        mantras.splice(index, 1)
+    }
+    enabled = false;
+    resetMessages()
+    makeMsgEditable()
+}
+
+function cancelChange() {
+    enabled = false;
+    resetMessages()
+    makeMsgEditable()
 }
 
 function addAffirmMsg() {
@@ -128,23 +216,31 @@ function closeModalM() {
 function submitAffirmMsg() {
     if(!userAMessage.value){
         error1.classList.remove('hidden')
+    } else if (affirmations.includes(userAMessage.value)) {
+        error11.classList.remove('hidden')
     } else {
         error1.classList.add('hidden')
         affirmModal.classList.add('hidden')
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
+        enabled = false;
         resetMessages()
+        makeMsgEditable()
     }
 }
 
 function submitMantraMsg() {
     if(!userMMessage.value){
         error2.classList.remove('hidden')
+    } else if (mantras.includes(userMMessage.value)) {
+        error22.classList.remove('hidden')
     } else {
         error2.classList.add('hidden')
         mantraModal.classList.add('hidden')
         mantras.push(userMMessage.value)
         userMMessage.value = '';
+        enabled = false;
         resetMessages()
+        makeMsgEditable()
     }
 }
