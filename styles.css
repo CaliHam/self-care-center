@@ -54,7 +54,6 @@ p {
 
 body {
     background: linear-gradient(to bottom, #134d71, #78a7c6, #f7e4bf) no-repeat;
-    background-position: fill;
     margin: 0;
 }
 
@@ -117,7 +116,7 @@ label {
 }
 
 
-#clearbtn:hover, #msgbtn:hover, #addafirmbtn:hover, #addmtrabtn:hover {
+#clearbtn:hover, #msgbtn:hover, #addafirmbtn:hover, #addmtrabtn:hover, .enterMsg:hover, .deleteMsg:hover, .cancel:hover {
     background-color: #2f75a1;
     cursor: pointer;
     transform: scale(1.1);
@@ -199,12 +198,34 @@ img {
     background: none;
     border: 0px;
 }
+
+.editing {
+    display: flex;
+    flex-direction: column;
+}
+.threebtns {
+    display: flex;
+    justify-content: space-around;
+
+}
+.enterMsg, .deleteMsg, .cancel {
+    font-size: 15px;
+    padding: 5px 10px;
+    border: 0px;
+    background-color: #134d71;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    width: auto;
+    color: white;
+    transition: .2s ease all;
+}
 .close1:hover, .close2:hover, .submit1:hover, .submit2:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 .edit-message {
-    width: 60%;
+    width: 90%;
+    margin: 5%;
 }
 .hidden {
     display: none !important;

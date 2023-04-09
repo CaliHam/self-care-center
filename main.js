@@ -134,12 +134,14 @@ function editMessage(event) {
     var currentMessage = event.target;
     var editForm = document.createElement('form')
     editForm.innerHTML += `
-    <form>
+    <form class="editing">
         <input placeholder="${currentMessage.innerText}" class="edit-message"/>
-        <p id="hiddenError" class="hidden">Please fill out the field</p>
-        <button class="enterMsg">✔️</button>
-        <button class="deleteMsg">Delete❌</button>
-        <button class="cancel">Cancel ✖️</button>
+        <p id="hiddenError" class="hidden">Please fill out the field.</p>
+        <div class="threebtns">
+            <button class="enterMsg">Submit ✔️</button>
+            <button class="deleteMsg">Delete ❌</button>
+            <button class="cancel">Cancel ✖️</button>
+        </div>
     </form>`
     currentMessage.parentNode.replaceChild(editForm, currentMessage)
     var submitMsgBtn = document.querySelector('.enterMsg')
