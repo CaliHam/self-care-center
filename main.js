@@ -114,6 +114,7 @@ function showLists(msgArray) {
         }
     }
 }
+var enabled = false;
 
 function makeMsgEditable() {
     var allMessages = document.querySelectorAll('.editable');
@@ -121,9 +122,15 @@ function makeMsgEditable() {
         element.addEventListener('dblclick', function (event) {
             editMessage(event)
     })
-)}
+ )}
+
 
 function editMessage(event) {
+    if (!enabled) {
+        enabled = true;
+    } else {
+        return;
+    }
     var currentMessage = event.target;
     var editForm = document.createElement('form')
     editForm.innerHTML += `
@@ -167,6 +174,7 @@ function saveNewMsg(currentMessage) {
         var index = mantras.indexOf(text)
         mantras.splice(index, 1, newMsg.value)
     }
+    enabled = false;
     resetMessages()
     makeMsgEditable()
 }
@@ -180,11 +188,13 @@ function deleteMsg(currentMessage) {
         var index = mantras.indexOf(text)
         mantras.splice(index, 1)
     }
+    enabled = false;
     resetMessages()
     makeMsgEditable()
 }
 
 function cancelChange() {
+    enabled = false;
     resetMessages()
     makeMsgEditable()
 }
@@ -213,6 +223,7 @@ function submitAffirmMsg() {
         affirmModal.classList.add('hidden')
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
+        enabled = false;
         resetMessages()
         makeMsgEditable()
     }
@@ -228,6 +239,7 @@ function submitMantraMsg() {
         mantraModal.classList.add('hidden')
         mantras.push(userMMessage.value)
         userMMessage.value = '';
+        enabled = false;
         resetMessages()
         makeMsgEditable()
     }
