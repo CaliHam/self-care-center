@@ -12,7 +12,7 @@ To clone and run this app:
 5. Type "git clone" and paste the link
 
 ### Preview of App:
-[//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
+![Gif of WebPage](assets/GifofWebpage.gif)
 
 ### Context:
 I have been working on this project for a total of five days. I am currently halfway through Mod 1 of Turing.
