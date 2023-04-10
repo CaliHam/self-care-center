@@ -46,7 +46,12 @@ close2Btn.addEventListener('click', closeModalM)
 // EVENT HANDLERS AND FUNCTIONS //
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
-  }
+}
+
+function addHidden(elements) {
+    elements.forEach((element) => element.classList.add('hidden'))
+}
+
 function clearMsg() {
     msgBox.innerHTML = `<img src="assets/meditate.svg" alt="Bell Icon">`
     clearBtn.classList.add('hidden');
@@ -84,13 +89,11 @@ function showMessage() {
 function goHome() {
     homeView.classList.remove('hidden')
     viewAllBtn.classList.remove('hidden')
-    homeBtn.classList.add('hidden')
-    allMessagesView.classList.add('hidden')
+    addHidden([homeBtn, allMessagesView])
 }
 
 function showAllMessages() {
-    homeView.classList.add('hidden')
-    viewAllBtn.classList.add('hidden')
+    addHidden([homeView, viewAllBtn])
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
     resetMessages()
@@ -137,6 +140,7 @@ function editMessage(event) {
     <form class="editing">
         <input placeholder="${currentMessage.innerText}" class="edit-message"/>
         <p id="hiddenError" class="hidden">✨Please fill out the field.✨</p>
+        <p id="hiddenError2" class="hidden">✨This message is already included.✨</p>
         <div class="threebtns">
             <button class="enterMsg">Submit ✔️</button>
             <button class="deleteMsg">Delete ❌</button>
@@ -144,20 +148,32 @@ function editMessage(event) {
         </div>
     </form>`
     currentMessage.parentNode.replaceChild(editForm, currentMessage)
+    submitNewMsg(currentMessage)
+    deleteThisMsg(currentMessage)
+    cancelThisChange()
+}
+
+function submitNewMsg(currentMessage) {
     var submitMsgBtn = document.querySelector('.enterMsg')
     submitMsgBtn.addEventListener('click', function (event) {
         event.preventDefault()
         saveNewMsg(currentMessage)
     })
+}
+
+function deleteThisMsg(currentMessage) {
     var deleteMsgBtn = document.querySelector('.deleteMsg')
     deleteMsgBtn.addEventListener('click', function (event) {
         event.preventDefault()
         deleteMsg(currentMessage)
     })
+}
+
+function cancelThisChange() {
     var cancelBtn = document.querySelector('.cancel')
     cancelBtn.addEventListener('click', function (event) {
         event.preventDefault()
-        cancelChange(currentMessage)
+        cancelChange()
     })
 }
 
@@ -170,11 +186,23 @@ function saveNewMsg(currentMessage) {
         return;
     }
     else if (currentMessage.id.startsWith('a')){
-        var index = affirmations.indexOf(text)
-        affirmations.splice(index, 1, newMsg.value)
+        if (affirmations.includes(newMsg.value)) {
+            var alreadyIncluded = document.querySelector('#hiddenError2')
+            alreadyIncluded.classList.remove('hidden')
+            return;
+        } else {
+            var index = affirmations.indexOf(text)
+            affirmations.splice(index, 1, newMsg.value)
+        }
     } else if (currentMessage.id.startsWith('m')){
+        if (mantras.includes(newMsg.value)) {
+            var alreadyIncluded = document.querySelector('#hiddenError2')
+            alreadyIncluded.classList.remove('hidden')
+            return;
+        } else {
         var index = mantras.indexOf(text)
         mantras.splice(index, 1, newMsg.value)
+        }
     }
     enabled = false;
     resetMessages()
@@ -207,7 +235,6 @@ function addAffirmMsg() {
 function addMantraMsg() {
     mantraModal.classList.remove('hidden')
 }
-
 function closeModalA() {
     affirmModal.classList.add('hidden')
 }
@@ -221,9 +248,7 @@ function submitAffirmMsg() {
     } else if (affirmations.includes(userAMessage.value)) {
         error11.classList.remove('hidden')
     } else {
-        error1.classList.add('hidden')
-        error11.classList.add('hidden')
-        affirmModal.classList.add('hidden')
+        addHidden([error1, error11, affirmModal])
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
         enabled = false;
@@ -238,9 +263,7 @@ function submitMantraMsg() {
     } else if (mantras.includes(userMMessage.value)) {
         error22.classList.remove('hidden')
     } else {
-        error2.classList.add('hidden')
-        error22.classList.add('hidden')
-        mantraModal.classList.add('hidden')
+        addHidden([error2, error22, mantraModal])
         mantras.push(userMMessage.value)
         userMMessage.value = '';
         enabled = false;
