@@ -34,3 +34,4 @@ Calli: https://github.com/CaliHam
 ## Challenges:
 1. The extra features on the "View All Messages" were a bigger challenge than I imagined. The edit message feature was a challenge because it took me a while fully grasp how much I needed to put into it; each button (submit, cancel, and delete) and their event handlers.
 2. Making sure everything is fluid and there are no errors or bugs was a challenge. I realized after submitting the new messages, I had to run both my resetMessages() funtion and the makeMsgEditable() functions again.
+3. I wish I could have made my code a little dryer. There are many opportunities where I re-used similar lines of code when dealing with the seperate Affirmations and Mantras columns. 
