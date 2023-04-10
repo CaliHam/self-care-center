@@ -136,7 +136,7 @@ function editMessage(event) {
     editForm.innerHTML += `
     <form class="editing">
         <input placeholder="${currentMessage.innerText}" class="edit-message"/>
-        <p id="hiddenError" class="hidden">Please fill out the field.</p>
+        <p id="hiddenError" class="hidden">✨Please fill out the field.✨</p>
         <div class="threebtns">
             <button class="enterMsg">Submit ✔️</button>
             <button class="deleteMsg">Delete ❌</button>
@@ -222,6 +222,7 @@ function submitAffirmMsg() {
         error11.classList.remove('hidden')
     } else {
         error1.classList.add('hidden')
+        error11.classList.add('hidden')
         affirmModal.classList.add('hidden')
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
@@ -238,6 +239,7 @@ function submitMantraMsg() {
         error22.classList.remove('hidden')
     } else {
         error2.classList.add('hidden')
+        error22.classList.add('hidden')
         mantraModal.classList.add('hidden')
         mantras.push(userMMessage.value)
         userMMessage.value = '';
