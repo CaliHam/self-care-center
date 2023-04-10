@@ -23,7 +23,7 @@ p {
     margin: 20px;
 }
 
-#viewall, #faves, #homebtn {
+#viewall, #homebtn {
     font-size: 15px;
     border: 0px;
     padding: 7px 4px;
@@ -35,7 +35,7 @@ p {
     transition: .2s ease all;
 }
 
-#viewall:hover, #faves:hover, #homebtn:hover {
+#viewall:hover, #homebtn:hover {
     background-color: #faf5eb;
     color:#468dba;
     cursor: pointer;
@@ -54,7 +54,6 @@ p {
 
 body {
     background: linear-gradient(to bottom, #134d71, #78a7c6, #f7e4bf) no-repeat;
-    background-position: fill;
     margin: 0;
 }
 
@@ -116,8 +115,7 @@ label {
     transition: .2s ease all;
 }
 
-
-#clearbtn:hover, #msgbtn:hover, #addafirmbtn:hover, #addmtrabtn:hover {
+#clearbtn:hover, #msgbtn:hover, #addafirmbtn:hover, #addmtrabtn:hover, .enterMsg:hover, .deleteMsg:hover, .cancel:hover {
     background-color: #2f75a1;
     cursor: pointer;
     transform: scale(1.1);
@@ -180,7 +178,7 @@ img {
     border-radius: 5px;
     z-index: 10000;
     background-color: white;
-    padding: 0px 25px 25px 25px;
+    padding-left: 10px;
     overflow: auto;
     width: auto;
     height: auto;
@@ -190,21 +188,47 @@ img {
     padding: 20px;
     background-color: white;
 }
+.user-message, .user-message2 {
+    width: 90%;
+    margin: 5px 5px 15px 5px;
+}
+
 #close-btn {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px;
 }
 .close1, .close2 {
     background: none;
     border: 0px;
+}
+
+.editing {
+    display: flex;
+    flex-direction: column;
+}
+.threebtns {
+    display: flex;
+    justify-content: space-around;
+
+}
+.enterMsg, .deleteMsg, .cancel, .submit1, .submit2 {
+    font-size: 15px;
+    padding: 5px 10px;
+    border: 0px;
+    background-color: #134d71;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    width: auto;
+    color: white;
+    transition: .2s ease;
 }
 .close1:hover, .close2:hover, .submit1:hover, .submit2:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 .edit-message {
-    width: 60%;
+    width: 90%;
+    margin: 5%;
 }
 .hidden {
     display: none !important;
@@ -214,6 +238,7 @@ img {
     .all-messages {
         display: flex;
         flex-direction: column;
+        transition: .2s ease;
     }
     .all-messages > article {
         width: auto;
