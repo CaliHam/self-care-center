@@ -1,4 +1,3 @@
-// DECLARE VARIABLES //
 var msgBtn = document.querySelector('#msgbtn')
 var msgBox = document.querySelector('.message-box')
 var messages = document.querySelectorAll('input[name="message"]')
@@ -25,28 +24,43 @@ var error11 = document.querySelector('#error11')
 var error22 = document.querySelector('#error22')
 var close1Btn = document.querySelector('.close1')
 var close2Btn = document.querySelector('.close2')
+var enabled = false;
 
-
-// EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
 clearBtn.addEventListener('click', clearMsg)
 viewAllBtn.addEventListener('click', showAllMessages)
 homeBtn.addEventListener('click', goHome)
 addAffirmMsgBtn.addEventListener('click', addAffirmMsg)
 addMtraMsgBtn.addEventListener('click', addMantraMsg)
+close1Btn.addEventListener('click', closeModalA)
+close2Btn.addEventListener('click', closeModalM)
 submitABtn.addEventListener('click', function() {
     submitAffirmMsg() 
 })
 submitMBtn.addEventListener('click', function() {
     submitMantraMsg()
 })
-close1Btn.addEventListener('click', closeModalA)
-close2Btn.addEventListener('click', closeModalM)
 
-// EVENT HANDLERS AND FUNCTIONS //
+function addAffirmMsg() {
+    affirmModal.classList.remove('hidden')
+}
+function addMantraMsg() {
+    mantraModal.classList.remove('hidden')
+}
+function closeModalA() {
+    affirmModal.classList.add('hidden')
+}
+function closeModalM() {
+    mantraModal.classList.add('hidden')
+}
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
-  }
+}
+
+function addHidden(elements) {
+    elements.forEach((element) => element.classList.add('hidden'))
+}
+
 function clearMsg() {
     msgBox.innerHTML = `<img src="assets/meditate.svg" alt="Bell Icon">`
     clearBtn.classList.add('hidden');
@@ -84,13 +98,11 @@ function showMessage() {
 function goHome() {
     homeView.classList.remove('hidden')
     viewAllBtn.classList.remove('hidden')
-    homeBtn.classList.add('hidden')
-    allMessagesView.classList.add('hidden')
+    addHidden([homeBtn, allMessagesView])
 }
 
 function showAllMessages() {
-    homeView.classList.add('hidden')
-    viewAllBtn.classList.add('hidden')
+    addHidden([homeView, viewAllBtn])
     homeBtn.classList.remove('hidden')
     allMessagesView.classList.remove('hidden')
     resetMessages()
@@ -121,34 +133,54 @@ function makeMsgEditable() {
         element.addEventListener('dblclick', function (event) {
             editMessage(event)
     })
-)}
+ )}
 
 function editMessage(event) {
+    if (!enabled) {
+        enabled = true;
+    } else {
+        return;
+    }
     var currentMessage = event.target;
     var editForm = document.createElement('form')
     editForm.innerHTML += `
-    <form>
+    <form class="editing">
         <input placeholder="${currentMessage.innerText}" class="edit-message"/>
-        <p id="hiddenError" class="hidden">Please fill out the field</p>
-        <button class="enterMsg">✔️</button>
-        <button class="deleteMsg">Delete❌</button>
-        <button class="cancel">Cancel ✖️</button>
+        <p id="hiddenError" class="hidden">✨Please fill out the field.✨</p>
+        <p id="hiddenError2" class="hidden">✨This message is already included.✨</p>
+        <div class="threebtns">
+            <button class="enterMsg">Submit ✔️</button>
+            <button class="deleteMsg">Delete ❌</button>
+            <button class="cancel">Cancel ✖️</button>
+        </div>
     </form>`
     currentMessage.parentNode.replaceChild(editForm, currentMessage)
+    submitNewMsg(currentMessage)
+    deleteThisMsg(currentMessage)
+    cancelThisChange()
+}
+
+function submitNewMsg(currentMessage) {
     var submitMsgBtn = document.querySelector('.enterMsg')
     submitMsgBtn.addEventListener('click', function (event) {
         event.preventDefault()
         saveNewMsg(currentMessage)
     })
+}
+
+function deleteThisMsg(currentMessage) {
     var deleteMsgBtn = document.querySelector('.deleteMsg')
     deleteMsgBtn.addEventListener('click', function (event) {
         event.preventDefault()
         deleteMsg(currentMessage)
     })
+}
+
+function cancelThisChange() {
     var cancelBtn = document.querySelector('.cancel')
     cancelBtn.addEventListener('click', function (event) {
         event.preventDefault()
-        cancelChange(currentMessage)
+        cancelChange()
     })
 }
 
@@ -161,12 +193,25 @@ function saveNewMsg(currentMessage) {
         return;
     }
     else if (currentMessage.id.startsWith('a')){
-        var index = affirmations.indexOf(text)
-        affirmations.splice(index, 1, newMsg.value)
+        if (affirmations.includes(newMsg.value)) {
+            var alreadyIncluded = document.querySelector('#hiddenError2')
+            alreadyIncluded.classList.remove('hidden')
+            return;
+        } else {
+            var index = affirmations.indexOf(text)
+            affirmations.splice(index, 1, newMsg.value)
+        }
     } else if (currentMessage.id.startsWith('m')){
+        if (mantras.includes(newMsg.value)) {
+            var alreadyIncluded = document.querySelector('#hiddenError2')
+            alreadyIncluded.classList.remove('hidden')
+            return;
+        } else {
         var index = mantras.indexOf(text)
         mantras.splice(index, 1, newMsg.value)
+        }
     }
+    enabled = false;
     resetMessages()
     makeMsgEditable()
 }
@@ -180,27 +225,15 @@ function deleteMsg(currentMessage) {
         var index = mantras.indexOf(text)
         mantras.splice(index, 1)
     }
+    enabled = false;
     resetMessages()
     makeMsgEditable()
 }
 
 function cancelChange() {
+    enabled = false;
     resetMessages()
     makeMsgEditable()
-}
-
-function addAffirmMsg() {
-    affirmModal.classList.remove('hidden')
-}
-function addMantraMsg() {
-    mantraModal.classList.remove('hidden')
-}
-
-function closeModalA() {
-    affirmModal.classList.add('hidden')
-}
-function closeModalM() {
-    mantraModal.classList.add('hidden')
 }
 
 function submitAffirmMsg() {
@@ -209,10 +242,10 @@ function submitAffirmMsg() {
     } else if (affirmations.includes(userAMessage.value)) {
         error11.classList.remove('hidden')
     } else {
-        error1.classList.add('hidden')
-        affirmModal.classList.add('hidden')
+        addHidden([error1, error11, affirmModal])
         affirmations.push(userAMessage.value)
         userAMessage.value = '';
+        enabled = false;
         resetMessages()
         makeMsgEditable()
     }
@@ -224,10 +257,10 @@ function submitMantraMsg() {
     } else if (mantras.includes(userMMessage.value)) {
         error22.classList.remove('hidden')
     } else {
-        error2.classList.add('hidden')
-        mantraModal.classList.add('hidden')
+        addHidden([error2, error22, mantraModal])
         mantras.push(userMMessage.value)
         userMMessage.value = '';
+        enabled = false;
         resetMessages()
         makeMsgEditable()
     }
