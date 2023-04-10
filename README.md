@@ -10,6 +10,7 @@ To clone and run this app:
 3. Copy the SSH
 4. Go to your terminal and `cd` into your desired folder 
 5. Type "git clone" and paste the link
+6. Open index.html
 
 ### Preview of App:
 ![Gif of WebPage](assets/GifofWebpage.gif)
