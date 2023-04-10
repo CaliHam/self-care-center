@@ -1,4 +1,3 @@
-// DECLARE VARIABLES //
 var msgBtn = document.querySelector('#msgbtn')
 var msgBox = document.querySelector('.message-box')
 var messages = document.querySelectorAll('input[name="message"]')
@@ -25,25 +24,35 @@ var error11 = document.querySelector('#error11')
 var error22 = document.querySelector('#error22')
 var close1Btn = document.querySelector('.close1')
 var close2Btn = document.querySelector('.close2')
+var enabled = false;
 
-
-// EVENT LISTENERS //
 msgBtn.addEventListener('click', showMessage)
 clearBtn.addEventListener('click', clearMsg)
 viewAllBtn.addEventListener('click', showAllMessages)
 homeBtn.addEventListener('click', goHome)
 addAffirmMsgBtn.addEventListener('click', addAffirmMsg)
 addMtraMsgBtn.addEventListener('click', addMantraMsg)
+close1Btn.addEventListener('click', closeModalA)
+close2Btn.addEventListener('click', closeModalM)
 submitABtn.addEventListener('click', function() {
     submitAffirmMsg() 
 })
 submitMBtn.addEventListener('click', function() {
     submitMantraMsg()
 })
-close1Btn.addEventListener('click', closeModalA)
-close2Btn.addEventListener('click', closeModalM)
 
-// EVENT HANDLERS AND FUNCTIONS //
+function addAffirmMsg() {
+    affirmModal.classList.remove('hidden')
+}
+function addMantraMsg() {
+    mantraModal.classList.remove('hidden')
+}
+function closeModalA() {
+    affirmModal.classList.add('hidden')
+}
+function closeModalM() {
+    mantraModal.classList.add('hidden')
+}
 function getRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
 }
@@ -117,7 +126,6 @@ function showLists(msgArray) {
         }
     }
 }
-var enabled = false;
 
 function makeMsgEditable() {
     var allMessages = document.querySelectorAll('.editable');
@@ -126,7 +134,6 @@ function makeMsgEditable() {
             editMessage(event)
     })
  )}
-
 
 function editMessage(event) {
     if (!enabled) {
@@ -227,19 +234,6 @@ function cancelChange() {
     enabled = false;
     resetMessages()
     makeMsgEditable()
-}
-
-function addAffirmMsg() {
-    affirmModal.classList.remove('hidden')
-}
-function addMantraMsg() {
-    mantraModal.classList.remove('hidden')
-}
-function closeModalA() {
-    affirmModal.classList.add('hidden')
-}
-function closeModalM() {
-    mantraModal.classList.add('hidden')
 }
 
 function submitAffirmMsg() {
