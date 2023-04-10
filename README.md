@@ -1,51 +1,37 @@
-# Self Care Center
-## Overview
-How can I care for myself? One way is with affirmations and mantras!
-Affirmations are thoughts of positive self-empowerment, meant to assert your self-worth.
-Mantras are repetive phrases that are repeated again and again during mindfulness practices. Your challenge is to build an app that helps users remind themselves of their inherent value!
-
-This Solo Challenge gives students and instructors the opportunity to get a pulse on where you are with the foundational concepts of Module 1 curriculum. Students should use this as an opportunity to challenge themselves and work completely independently. Google can (and probably should!) be used, but any other code base should not be referenced. Instructors will be able to use your work, both completion of functionality and code quality, to determine where you stand and if you are behind for this point in the module, provide supports to intervene.
-
-The spec for this project can be found [here](https://frontend.turing.io/projects/module-1/self-care-center.html). 
-
-## Learning Goals
-
-- Gain experience building an application that utilizes HTML, CSS and JavaScript
-- Write HTML and CSS to match a provided comp
-- Understand how to listen to and respond to user events
-- Individualize your programming skill set
-
-## Setup
-
-- Fork this project to your own Github account
-- Clone the repository to your local machine
-- `cd` into the project
-- Read this README thoroughly, then begin working!
-
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
-______________________________________________________  
-
 # Self-Care Center 
 
 ### Abstract:
-[//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
+This ✨ Self Care Center ✨ will help lighten your mood and get your day started right by providing unique affirmations and mantras! Simply select a topic and receive your message! You are also able to see a list of all of the messages and mantras in the "View All Messages" page. In this page, you can edit, add, and delete messages as well.
 
 ### Installation Instructions:
-[//]: <> (What steps does a person have to take to get your app cloned down and running?)
+To clone and run this app:
+1. Go to https://github.com/CaliHam/self-care-center
+2. Click the green "<> Code" button
+3. Copy the SSH
+4. Go to your terminal and `cd` into your desired folder 
+5. Type "git clone" and paste the link
 
 ### Preview of App:
-[//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
+![Gif of WebPage](assets/GifofWebpage.gif)
 
 ### Context:
-[//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
+I have been working on this project for a total of five days. I am currently halfway through Mod 1 of Turing.
 
 ### Contributors:
-[//]: <> (Who worked on this application? Link to their GitHubs.)
+Calli: https://github.com/CaliHam
 
 ### Learning Goals:
-[//]: <> (What were the learning goals of this project? What tech did you work with?)
+- Gain experience building an application that utilizes HTML, CSS and JavaScript
+- Write HTML and CSS to match a provided comp
+- Understand how to listen to and respond to user events
+- Individualize my programming skill set
 
 ### Wins + Challenges:
-[//]: <> (What are 2-3 wins you have from this project? What were some challenges you faced - and how did you get over them?)
+## Wins:
+1. Learning how to start a webpage from scratch and connect CSS, JS, and HTML was so much fun and I feel like I have a better grasp now for how they all work together. 
+2. I completed the MVP for this project very early on, after 2-3 days, giving me plenty of time to add extra features.
+
+## Challenges:
+1. The extra features on the "View All Messages" were a bigger challenge than I imagined. The edit message feature was a challenge because it took me a while fully grasp how much I needed to put into it; each button (submit, cancel, and delete) and their event handlers.
+2. Making sure everything is fluid and there are no errors or bugs was a challenge. I realized after submitting the new messages, I had to run both my resetMessages() funtion and the makeMsgEditable() functions again.
+3. I wish I could have made my code a little dryer. There are many opportunities where I re-used similar lines of code when dealing with the seperate Affirmations and Mantras columns. 
